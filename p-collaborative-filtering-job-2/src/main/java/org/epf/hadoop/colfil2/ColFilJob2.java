@@ -18,27 +18,21 @@ public class ColFilJob2 {
 
         job.setJarByClass(ColFilJob2.class);
 
-        // Mapper configuration
         job.setMapperClass(CommonRelationshipMapper.class);
         job.setMapOutputKeyClass(UserPair.class);
         job.setMapOutputValueClass(IntWritable.class);
 
-        // Partitioner configuration
         job.setPartitionerClass(UserPairPartitioner.class);
 
-        // Reducer configuration
         job.setReducerClass(CommonRelationshipReducer.class);
-        job.setNumReduceTasks(2); // Utiliser deux Reducers
+        job.setNumReduceTasks(2);
 
-        // Input and output configuration
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        // Output key/value classes
         job.setOutputKeyClass(UserPair.class);
         job.setOutputValueClass(IntWritable.class);
 
-        // Run the job
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

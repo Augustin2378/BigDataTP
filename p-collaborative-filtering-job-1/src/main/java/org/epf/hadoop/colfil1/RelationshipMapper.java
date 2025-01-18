@@ -10,7 +10,7 @@ public class RelationshipMapper extends Mapper<LongWritable, Relationship, Text,
 
     @Override
     protected void map(LongWritable key, Relationship value, Context context) throws IOException, InterruptedException {
-        // Emission des relations unidirectionnelles
+
         context.write(new Text(value.getId1()), new Text(value.getId2()));
         context.write(new Text(value.getId2()), new Text(value.getId1()));
     }

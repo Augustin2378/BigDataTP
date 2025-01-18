@@ -17,13 +17,11 @@ public class CommonRelationshipMapper extends Mapper<LongWritable, Text, UserPai
         String user = parts[0];
         String[] relations = parts[1].split(",");
 
-        // Émettre les paires de relations
         for (int i = 0; i < relations.length; i++) {
             for (int j = i + 1; j < relations.length; j++) {
                 UserPair pair = new UserPair(relations[i], relations[j]);
                 context.write(pair, ONE);
             }
-            // Émettre les relations directes
             UserPair directPair = new UserPair(user, relations[i]);
             context.write(directPair, ZERO);
         }

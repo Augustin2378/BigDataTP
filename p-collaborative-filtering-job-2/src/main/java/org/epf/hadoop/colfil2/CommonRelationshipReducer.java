@@ -14,16 +14,14 @@ public class CommonRelationshipReducer extends Reducer<UserPair, IntWritable, Us
         int commonRelationsCount = 0;
         boolean directlyConnected = false;
 
-        // Parcours des valeurs associées à la paire
         for (IntWritable value : values) {
             if (value.get() == 0) {
-                directlyConnected = true; // Les utilisateurs sont directement connectés
+                directlyConnected = true;
             } else {
-                commonRelationsCount += value.get(); // Comptage des relations communes
+                commonRelationsCount += value.get();
             }
         }
 
-        // Si les utilisateurs ne sont pas directement connectés et qu'ils ont des relations en commun
         if (!directlyConnected && commonRelationsCount > 0) {
             result.set(commonRelationsCount);
             context.write(key, result);

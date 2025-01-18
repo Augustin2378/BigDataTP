@@ -42,14 +42,14 @@ public class UserPair implements WritableComparable<UserPair> {
     public int compareTo(UserPair o) {
         int cmp = this.user1.compareTo(o.user1);
         if (cmp != 0) {
-            return cmp; // Compare user1 first
+            return cmp;
         }
-        return this.user2.compareTo(o.user2); // If user1 is equal, compare user2
+        return this.user2.compareTo(o.user2);
     }
 
     @Override
     public String toString() {
-        return this.user1 + "." + this.user2;
+        return this.user1 + "," + this.user2;
     }
 
     public String getFirstUser() {

@@ -21,17 +21,14 @@ public class RelationshipJob {
         job.setJarByClass(RelationshipJob.class);
         job.setInputFormatClass(RelationshipInputFormat.class);
 
-        // Mapper
         job.setMapperClass(RelationshipMapper.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Text.class);
 
-        // Combiner
         job.setCombinerClass(RelationshipReducer.class);
 
-        // Reducer
         job.setReducerClass(RelationshipReducer.class);
-        job.setNumReduceTasks(2);  // Spécifie 2 reducers
+        job.setNumReduceTasks(2);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
